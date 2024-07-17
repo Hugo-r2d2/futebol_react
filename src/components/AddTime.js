@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 const headers = {
   "ngrok-skip-browser-warning": "123",
 };
@@ -13,7 +13,7 @@ const headers = {
         }
 */
 
-const AddTime = () => {
+const AddTime = ({ onTimeAdded }) => {
   const [nome, setNome] = useState("");
 
   const handleSubmit = async (e) => {
@@ -33,7 +33,7 @@ const AddTime = () => {
       );
       console.log(response);
       setNome("");
-      //onTimeAdded(response.data);
+      onTimeAdded(response.data);
     } catch (error) {
       console.error("Falha ao criar novo time:" + error);
     }
